@@ -63,7 +63,7 @@
 		<table>
 		<tr><th class="tHeader">Name</th><th class="tHeader">Neighborhood</th><th class="tHeader">City</th><th class="tHeader">Type</th><th class="tHeader">Who Can Shop</th><th class="">Links</th></tr>
 		  {{#rows}}
-		  	<tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{state}}</td><td>{{whocanshop}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
+		  	<tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{type}}</td><td>{{whocanshop}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
 		  	<tr class="hideRow"><td>Who Can Shop: {{whocanshop}}</td></tr>
 		  {{/rows}}
 	  </table>
