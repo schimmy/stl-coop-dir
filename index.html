@@ -61,10 +61,10 @@
 
 	<script id="hackSpotsTable" type="text/html">
 		<table>
-		<tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">City</th><th class="tHeader">State</th><th class="tHeader">Country</th><th class="">Elsewhere</th></tr>
+		<tr><th class="tHeader">Name</th><th class="tHeader">Neighborhood</th><th class="tHeader">City</th><th class="tHeader">Type</th><th class="tHeader">Who Can Shop</th><th class="">Links</th></tr>
 		  {{#rows}}
 		  	<tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{state}}</td><td>{{country}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
-		  	<tr class="hideRow"><td>wifi: {{wifipassword}}</td></tr>
+		  	<tr class="hideRow"><td>Who Can Shop: {{whocanshop}}</td></tr>
 		  {{/rows}}
 	  </table>
 	</script>
@@ -76,13 +76,13 @@
 				<p class="colorText">{{address}}<p>
 				<p class="colorText">{{city}}, {{state}}</p>
 				<ul>
-			  	<li><span class="category">Wifi:</span> {{wifipassword}}</li>
+			  	<li><span class="category">Who Can Shop:</span> {{whocanshop}}</li>
 			  	<li><span class="category">Outlets:</span> {{outlets}}</li>
 			  	<li><span class="category">Couch:</span> {{couch}}</li>
 			  	<li><span class="category">Large Table:</span> {{largetable}}</li>
 			  	<li><span class="category">Outdoor Seating:</span> {{outdoorseating}}</li>
 			  	<li><span class="category">Brewing:</span> {{brewing}}</li>
-			  	<li><span class="category">Last edited by:</span> {{lasteditedby}}</li>
+			  	<li><span class="category">Last Edited by:</span> {{lasteditedby}}</li>
 		  	</ul>
 		  	<ul>
 		  		<li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
@@ -102,7 +102,7 @@
 			<p class="colorText">{{address}}<p>
 			<p class="colorText">{{city}}, {{state}}</p>
 			<ul>
-		  	<li><span class="category">Wifi:</span> {{wifipassword}}</li>
+		  	<li><span class="category">Who Can Shop:</span> {{whocanshop}}</li>
 		  	<li><span class="category">Outlets:</span> {{outlets}}</li>
 		  	<li><span class="category">Couch:</span> {{couch}}</li>
 		  	<li><span class="category">Large Table:</span> {{largetable}}</li>
