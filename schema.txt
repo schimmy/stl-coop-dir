@@ -1,0 +1,20 @@
+Original					New (spreadsheet)	New (ich.tag)
+
+Contributer's Twitter		Last edited by		lasteditedby
+Name
+							Neighborhood		neighborhood
+							Type				type
+Address
+City
+State
+long
+lat
+Country
+Wifi Password				Who Can Shop		whocanshop
+							Site				site
+Outlets
+Couch
+Large Table
+Brewing
+Outdoor Seating
+hexcolor
