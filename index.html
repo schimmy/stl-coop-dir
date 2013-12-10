@@ -47,7 +47,7 @@
 			<h3>Contribute!</h3>
 			<div id="theNumberofSpots"></div>
 			<p>The information in this list is automagically pulled from <a
-	 	href="https://docs.google.com/spreadsheet/ccc?key=0AhgGaMaJTafcdHAtUGNpSGRrT2Y4eHhZOTd4S2lKRnc#gid=0" target="_blank">this Google Spreadsheet</a>, which I've shared, so feel free to add/update the spreadsheet where appropriate. For the map you'll need to <strong>get the lat and long</strong> of the spot, you can get that <a href="http://www.latlong.net/" target="_blank">here</a>. The main list will probably/eventually only display neighborhood, so don't worry if you can't supply latitude/longitude information..</p> 
+	 	href="https://docs.google.com/spreadsheet/ccc?key=0Ag6u4s22HY5BdE1zanVjOEVDZDNYQlJ2aWxIdnBJTWc#gid=0" target="_blank">this Google Spreadsheet</a>, which I've shared, so feel free to add/update the spreadsheet where appropriate. For the map you'll need to <strong>get the lat and long</strong> of the spot, you can get that <a href="http://www.latlong.net/" target="_blank">here</a>. The main list will probably/eventually only display neighborhood, so don't worry if you can't supply latitude/longitude information..</p> 
 
 			<h3>Info</h3>
 			<p>This is (hopefully) a thorough but tidy and up-to-date listing of food co-ops and buying clubs in the NYC area, built and managed by those selfsame co-ops. If you're specifically interested in CSAs (Community Supported Agriculture), check out the <a href="http://www.justfood.org/csaloc">Just Food CSA locator.</a></p>
@@ -111,11 +111,9 @@
 	<script type="text/javascript">
 	  document.addEventListener('DOMContentLoaded', function() {
 	  	var gData
-	  	var URL = "0AhgGaMaJTafcdHAtUGNpSGRrT2Y4eHhZOTd4S2lKRnc"
-			Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } ) 
-		}) 
-
-		// so long, so messy
+	  	var URL = "0Ag6u4s22HY5BdE1zanVjOEVDZDNYQlJ2aWxIdnBJTWc"
+      Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
+	  })
 
 	  function showInfo(data) {
 	  	gData = data
@@ -136,8 +134,6 @@
 			  $('#latestSpot').css("display", "none")
 			  $('#selectedSpot').html(selectedSpot).css("display", "inline")
 			  var selectedCoords = [dataElement[0].lat, dataElement[0].long]
-			  matchGeoJSONbyRowNumber(rowNumber, geoJSON, gData, "#FF4646")
-			  var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
 				addPopups(map, markerLayer)
 			  map.panTo(selectedCoords, 13)
 	 		})
@@ -173,12 +169,10 @@
 			// useful bits from the original data
 			var optionsJSON = ["name", "address", "city", "rowNumber"]
 		  var geoJSONnoHL = Sheetsee.createGeoJSON(gData, optionsJSON)
-		  // change the color of the most recently added spot's marker
-		  var geoJSON = highlightLastMarker(geoJSONnoHL, "#FF4646")
 		  // create map, tilelayer (map background), markers and popups
 			var map = Sheetsee.loadMap("map")
 			Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
-			var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
+			var markerLayer = Sheetsee.addMarkerLayer(geoJSONnoHL, map, 13)
 			addPopups(map, markerLayer)
 
 			// design the popups to have the content and
@@ -191,11 +185,6 @@
 			  var rowNumber = e.layer.feature.opts.rowNumber.toString()
 			  // find that row in the table and make consider it selected
 			  $('#' + rowNumber).addClass("selectedRow")
-			  // using row number, find that marker in the geoJSON, give it
-			  // the selected marker color
-			  matchGeoJSONbyRowNumber(rowNumber, geoJSON, gData, "#FF4646")
-			 //  var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
-				// addPopups(map, markerLayer)
 				// using row number, get the data for the selected spot
 			  var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
 			  // take those details and re-write the selected spot section
@@ -219,9 +208,8 @@
 			})
 
 			// find total number of spots added
-			var numberOfSpots = gData.length
 			var theNumberofSpots = ich.theNumberofSpots({
-		  	numberOfSpots: numberOfSpots
+		  	numberOfSpots: gData.length
 	 	 	})
 			$('#theNumberofSpots').html(theNumberofSpots)
 
