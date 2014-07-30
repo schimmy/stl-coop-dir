@@ -108,8 +108,8 @@
 	  	Sheetsee.makeTable(gData, "#hackSpotsTable")
 	  	Sheetsee.initiateTableFilter(gData, "#tableFilter", "#hackSpotsTable")
 
-	  	// when someone clicks on a row, re-center the map
-	  	$('.spotRow').live("click", function(event) {
+        // when someone clicks on a row, re-center the map
+        $('.spotRow').on("click", function(event) {
 	  		$('.spotRow').removeClass("selectedRow")
 	 			var rowNumber = $(this).closest("tr").attr("id")
 	 			$('#' + rowNumber).addClass("selectedRow")
