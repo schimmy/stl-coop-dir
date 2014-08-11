@@ -161,6 +161,8 @@
       markerLayer.on('click', function(e) {
         // get row number of selected marker
         var rowNumber = e.layer.feature.opts.rowNumber.toString()
+        // remove old selected row
+        $('.spotRow').removeClass("selectedRow")
         // find that row in the table and make consider it selected
         $('#' + rowNumber).addClass("selectedRow")
         // using row number, get the data for the selected spot
