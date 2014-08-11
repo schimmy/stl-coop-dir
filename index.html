@@ -108,81 +108,81 @@
       Sheetsee.makeTable(gData, "#hackSpotsTable")
       Sheetsee.initiateTableFilter(gData, "#tableFilter", "#hackSpotsTable")
 
-        // when someone clicks on a row, re-center the map
-        $('.spotRow').on("click", function(event) {
+      // when someone clicks on a row, re-center the map
+      $('.spotRow').on("click", function(event) {
         $('.spotRow').removeClass("selectedRow")
-         var rowNumber = $(this).closest("tr").attr("id")
-         $('#' + rowNumber).addClass("selectedRow")
-         var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
-         var selectedSpot = ich.selectedSpot({
-          rows: dataElement
+        var rowNumber = $(this).closest("tr").attr("id")
+        $('#' + rowNumber).addClass("selectedRow")
+        var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
+        var selectedSpot = ich.selectedSpot({
+         rows: dataElement
         })
         $('#latestSpot').css("display", "none")
         $('#selectedSpot').html(selectedSpot).css("display", "inline")
         var selectedCoords = [dataElement[0].lat, dataElement[0].long]
         addPopups(map, markerLayer)
         map.panTo(selectedCoords, 11)
-       })
-
-      // so that the first map and info that loads
-      // is complete and doesn't show rows that are
-      // actively being edited by folk
-      function findLatestCompleteSpot(data) {
-        var latestCompleteSpot = []
-        var startWithLatestRow = data.reverse()
-        startWithLatestRow.forEach(function(row){
-          if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
-          else latestCompleteSpot.push(row)
-        })
-        return latestCompleteSpot[0]
-      }
-
-      // find the latest spot with the most important
-      // info filled in (to prevent map breaking if
-      // someone is currently editing spreadsheet)
-      var theLatestSpot = findLatestCompleteSpot(gData)
-      var latestSpot = ich.latestSpot({
-         rows: theLatestSpot
       })
-      $('#latestSpot').html(latestSpot)
 
-      // create geoJSON with coordinates and other
-      // useful bits from the original data
-      var optionsJSON = ["name", "address", "city", "rowNumber"]
-      var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
-      // create map, tilelayer (map background), markers and popups
-      var map = Sheetsee.loadMap("map")
-      Sheetsee.addTileLayer(map, 'schimmy.gg480cl6')
-      var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
+    // so that the first map and info that loads
+    // is complete and doesn't show rows that are
+    // actively being edited by folk
+    function findLatestCompleteSpot(data) {
+      var latestCompleteSpot = []
+      var startWithLatestRow = data.reverse()
+      startWithLatestRow.forEach(function(row){
+        if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
+        else latestCompleteSpot.push(row)
+      })
+      return latestCompleteSpot[0]
+    }
+
+    // find the latest spot with the most important
+    // info filled in (to prevent map breaking if
+    // someone is currently editing spreadsheet)
+    var theLatestSpot = findLatestCompleteSpot(gData)
+    var latestSpot = ich.latestSpot({
+       rows: theLatestSpot
+    })
+    $('#latestSpot').html(latestSpot)
+
+    // create geoJSON with coordinates and other
+    // useful bits from the original data
+    var optionsJSON = ["name", "address", "city", "rowNumber"]
+    var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
+    // create map, tilelayer (map background), markers and popups
+    var map = Sheetsee.loadMap("map")
+    Sheetsee.addTileLayer(map, 'schimmy.gg480cl6')
+    var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
+    setupMap(map, markerLayer)
+
+    // design the popups to have the content and
+    // interactions that we want
+    function setupMap(map, markerLayer) {
+      markerLayer.on('click', function(e) {
+        // get row number of selected marker
+        var rowNumber = e.layer.feature.opts.rowNumber.toString()
+        // find that row in the table and make consider it selected
+        $('#' + rowNumber).addClass("selectedRow")
+        // using row number, get the data for the selected spot
+        var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
+        // take those details and re-write the selected spot section
+        var selectedSpot = ich.selectedSpot({
+          rows: dataElement
+         })
+        $('#latestSpot').css("display", "none")
+        $('#selectedSpot').html(selectedSpot).css("display", "inline")
+        var feature = e.layer.feature
+        var popupContent = '<h2>' + feature.opts.name + '</h2>'
+        e.layer.bindPopup(popupContent, {closeButton: false,})
+      })
+    }
+
+    $('.resetMap').click(function() {
       setupMap(map, markerLayer)
-
-      // design the popups to have the content and
-      // interactions that we want
-      function setupMap(map, markerLayer) {
-        markerLayer.on('click', function(e) {
-          // get row number of selected marker
-          var rowNumber = e.layer.feature.opts.rowNumber.toString()
-          // find that row in the table and make consider it selected
-          $('#' + rowNumber).addClass("selectedRow")
-          // using row number, get the data for the selected spot
-          var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
-          // take those details and re-write the selected spot section
-          var selectedSpot = ich.selectedSpot({
-            rows: dataElement
-           })
-          $('#latestSpot').css("display", "none")
-          $('#selectedSpot').html(selectedSpot).css("display", "inline")
-          var feature = e.layer.feature
-          var popupContent = '<h2>' + feature.opts.name + '</h2>'
-          e.layer.bindPopup(popupContent, {closeButton: false,})
-        })
-      }
-
-      $('.resetMap').click(function() {
-        setupMap(map, markerLayer)
-        $('#latestSpot').css("display", "inline")
-        $('#selectedSpot').css("display", "none")
-      })
+      $('#latestSpot').css("display", "inline")
+      $('#selectedSpot').css("display", "none")
+    })
    }
 
   </script>
