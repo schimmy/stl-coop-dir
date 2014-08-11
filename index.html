@@ -1,190 +1,190 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>St. Louis Area Solidarity Economy</title>
-		<script type="text/javascript" src="js/ICanHaz.js"></script> 
-		<script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/v1.5.1/mapbox.js'></script>
-		<script type="text/javascript" src='js/jquery.js '></script>
-		<script type="text/javascript" src='js/tabletop.js'></script>
-		<script type="text/javascript" src='js/sheetsee.js'></script>
-		<script type="text/javascript" src='js/leaflet.markercluster.js'></script>
-		<link rel="shortcut icon" href="https://raw.github.com/jlord/hack-spots/master/favico.png"/>
+  <head>
+    <title>St. Louis Area Solidarity Economy</title>
+    <script type="text/javascript" src="js/ICanHaz.js"></script>
+    <script type="text/javascript" src='http://api.tiles.mapbox.com/mapbox.js/v1.5.1/mapbox.js'></script>
+    <script type="text/javascript" src='js/jquery.js '></script>
+    <script type="text/javascript" src='js/tabletop.js'></script>
+    <script type="text/javascript" src='js/sheetsee.js'></script>
+    <script type="text/javascript" src='js/leaflet.markercluster.js'></script>
+    <link rel="shortcut icon" href="https://raw.github.com/jlord/hack-spots/master/favico.png"/>
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link href='http://api.tiles.mapbox.com/mapbox.js/v1.5.1/mapbox.css' rel='stylesheet' />
-		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic'>
-		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700'>		
-		<link media="screen" rel="stylesheet" type="text/css" href="css/style.css"> 
-		<link media="screen" rel="stylesheet" type="text/css" href="css/site.css"> 
-		<link rel="stylesheet" href="css/MarkerCluster.css" />
-		<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
-	</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.5.1/mapbox.css' rel='stylesheet' />
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic'>
+    <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Amatic+SC:400,700'>
+    <link media="screen" rel="stylesheet" type="text/css" href="css/style.css">
+    <link media="screen" rel="stylesheet" type="text/css" href="css/site.css">
+    <link rel="stylesheet" href="css/MarkerCluster.css" />
+    <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+  </head>
 <body>
-	<div id="wrapper">
-		<h1>St. Louis Area Solidarity Economy</h1>
-		<div>
-			<ul class="nav">
-				<li><a href="#info">INFO</a> -</li>
-			</ul>
-		</div>
-		<div class="container">
-			<div id="rightSide">
-				<div id="latestSpot"></div>
-				<div id="selectedSpot"></div>
-			</div>
-			<div id="map"></div>
-		</div>
-		<div class="container">
-			<input id="tableFilter" type="text" placeholder="filter by.."></input>
-			<span class="clear button">Clear</span> <span class="resetMap button">Reset Map</span>
-			<span class="noMatches">no matches</span>
-			<div id="hackSpotsTable"></div>
-		</div>
-		<div id="info" class="container">
-			<h3>Contribute!</h3>
-			<p>The information in this list is automagically pulled from <a
-	 	href="https://docs.google.com/spreadsheet/ccc?key=0Ag6u4s22HY5BdE1zanVjOEVDZDNYQlJ2aWxIdnBJTWc#gid=0" target="_blank">this Google Spreadsheet</a>, which I've shared, so feel free to add/update the spreadsheet where appropriate. For the map you'll need to <strong>get the lat and long</strong> of the spot, you can get that <a href="http://www.latlong.net/" target="_blank">here</a>.</p>
+  <div id="wrapper">
+    <h1>St. Louis Area Solidarity Economy</h1>
+    <div>
+      <ul class="nav">
+        <li><a href="#info">INFO</a> -</li>
+      </ul>
+    </div>
+    <div class="container">
+      <div id="rightSide">
+        <div id="latestSpot"></div>
+        <div id="selectedSpot"></div>
+      </div>
+      <div id="map"></div>
+    </div>
+    <div class="container">
+      <input id="tableFilter" type="text" placeholder="filter by.."></input>
+      <span class="clear button">Clear</span> <span class="resetMap button">Reset Map</span>
+      <span class="noMatches">no matches</span>
+      <div id="hackSpotsTable"></div>
+    </div>
+    <div id="info" class="container">
+      <h3>Contribute!</h3>
+      <p>The information in this list is automagically pulled from <a
+     href="https://docs.google.com/spreadsheet/ccc?key=0Ag6u4s22HY5BdE1zanVjOEVDZDNYQlJ2aWxIdnBJTWc#gid=0" target="_blank">this Google Spreadsheet</a>, which I've shared, so feel free to add/update the spreadsheet where appropriate. For the map you'll need to <strong>get the lat and long</strong> of the spot, you can get that <a href="http://www.latlong.net/" target="_blank">here</a>.</p>
 
-			<h3>About the tech</h3>
-			<p>This site exists as it is because of several open-source projects, most notably <a href="http://jlord.github.io/sheetsee.js" target="_blank">sheetsee.js</a> and <a href="http://jlord.us/fork-n-go/">over here</a>. If you want to make a similar site, see: <a href="https://github.com/Lips/nyc-fca-dir">Lips' map</a> or the code for this site <a href="https://github.com/schimmy/stl-coop-dir">here</a>. Participation is welcome!</p>
-		</div>
-	</div><!-- end wrapper -->
+      <h3>About the tech</h3>
+      <p>This site exists as it is because of several open-source projects, most notably <a href="http://jlord.github.io/sheetsee.js" target="_blank">sheetsee.js</a> and <a href="http://jlord.us/fork-n-go/">over here</a>. If you want to make a similar site, see: <a href="https://github.com/Lips/nyc-fca-dir">Lips' map</a> or the code for this site <a href="https://github.com/schimmy/stl-coop-dir">here</a>. Participation is welcome!</p>
+    </div>
+  </div><!-- end wrapper -->
 
-	<script id="hackSpotsTable" type="text/html">
-		<table>
-		<tr><th class="tHeader">Name</th><th class="tHeader">Neighborhood</th><th class="tHeader">City</th><th class="tHeader">Type</th><th class="tHeader">Open to</th><th class="">Links</th></tr>
-		  {{#rows}}
-		  	<tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{neighborhood}}</td><td>{{city}}</td><td>{{type}}</td><td>{{whocanshop}}</td><td><a class="button" href="https://maps.google.com/maps?q={{name}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
-		  	<tr class="hideRow"><td>Open to: {{whocanshop}}</td></tr>
-		  {{/rows}}
-	  </table>
-	</script>
+  <script id="hackSpotsTable" type="text/html">
+    <table>
+    <tr><th class="tHeader">Name</th><th class="tHeader">Neighborhood</th><th class="tHeader">City</th><th class="tHeader">Type</th><th class="tHeader">Open to</th><th class="">Links</th></tr>
+      {{#rows}}
+        <tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{neighborhood}}</td><td>{{city}}</td><td>{{type}}</td><td>{{whocanshop}}</td><td><a class="button" href="https://maps.google.com/maps?q={{name}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
+        <tr class="hideRow"><td>Open to: {{whocanshop}}</td></tr>
+      {{/rows}}
+    </table>
+  </script>
 
-	<script id="latestSpot" type="text/html">
-			{{#rows}}
-				<h4 class="fauxButton">MOST RECENT SPOT</h4>
-				<h2>{{name}}</h2>
-				<p class="colorText">{{address}}<p>
-				<p class="colorText">{{city}}, {{state}}</p>
-				<ul>
-			  	<li><span class="category">Open to:</span> {{whocanshop}}</li>
-			  	<li><span class="category">Last Edited by:</span> {{lasteditedby}}</li>
-		  	</ul>
-		  	<ul>
-		  		<li><a href="https://maps.google.com/maps?q={{name}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-		  		<li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
-		  	</ul>
-		  {{/rows}}
-	</script>
+  <script id="latestSpot" type="text/html">
+      {{#rows}}
+        <h4 class="fauxButton">MOST RECENT SPOT</h4>
+        <h2>{{name}}</h2>
+        <p class="colorText">{{address}}<p>
+        <p class="colorText">{{city}}, {{state}}</p>
+        <ul>
+          <li><span class="category">Open to:</span> {{whocanshop}}</li>
+          <li><span class="category">Last Edited by:</span> {{lasteditedby}}</li>
+        </ul>
+        <ul>
+          <li><a href="https://maps.google.com/maps?q={{name}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
+          <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+        </ul>
+      {{/rows}}
+  </script>
 
-	<script id="selectedSpot" type="text/html">
-		{{#rows}}
-			<h4 class="fauxButton">SELECTED SPOT</h4>
-			<h2>{{name}}</h2>
-			<p class="colorText">{{address}}<p>
-			<p class="colorText">{{city}}, {{state}}</p>
-			<ul>
-		  	<li><span class="category">Open to:</span> {{whocanshop}}</li>
-		  	<li><span class="category">Last Edited by:</span> {{lasteditedby}}</li>
-	  	</ul>
-	  	<ul>
-	  		<li><a href="https://maps.google.com/maps?q={{name}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-	  		<li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
-	  	</ul>
-	  {{/rows}}
-	</script>
+  <script id="selectedSpot" type="text/html">
+    {{#rows}}
+      <h4 class="fauxButton">SELECTED SPOT</h4>
+      <h2>{{name}}</h2>
+      <p class="colorText">{{address}}<p>
+      <p class="colorText">{{city}}, {{state}}</p>
+      <ul>
+        <li><span class="category">Open to:</span> {{whocanshop}}</li>
+        <li><span class="category">Last Edited by:</span> {{lasteditedby}}</li>
+      </ul>
+      <ul>
+        <li><a href="https://maps.google.com/maps?q={{name}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
+        <li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+      </ul>
+    {{/rows}}
+  </script>
 
-	<script type="text/javascript">
+  <script type="text/javascript">
     // TODO: why is this not immediate and blocking?
-	  document.addEventListener('DOMContentLoaded', function() {
-	  	var gData
-	  	var URL = "0Ag6u4s22HY5BdE1zanVjOEVDZDNYQlJ2aWxIdnBJTWc"
+    document.addEventListener('DOMContentLoaded', function() {
+      var gData
+      var URL = "0Ag6u4s22HY5BdE1zanVjOEVDZDNYQlJ2aWxIdnBJTWc"
       Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
-	  })
+    })
 
-	  function showInfo(data) {
-	  	gData = data
-	  	// make the table, and the search bar
-	  	Sheetsee.makeTable(gData, "#hackSpotsTable")
-	  	Sheetsee.initiateTableFilter(gData, "#tableFilter", "#hackSpotsTable")
+    function showInfo(data) {
+      gData = data
+      // make the table, and the search bar
+      Sheetsee.makeTable(gData, "#hackSpotsTable")
+      Sheetsee.initiateTableFilter(gData, "#tableFilter", "#hackSpotsTable")
 
         // when someone clicks on a row, re-center the map
         $('.spotRow').on("click", function(event) {
-	  		$('.spotRow').removeClass("selectedRow")
-	 			var rowNumber = $(this).closest("tr").attr("id")
-	 			$('#' + rowNumber).addClass("selectedRow")
-	 			var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
-	 			var selectedSpot = ich.selectedSpot({
-				  rows: dataElement
-			  })
-			  $('#latestSpot').css("display", "none")
-			  $('#selectedSpot').html(selectedSpot).css("display", "inline")
-			  var selectedCoords = [dataElement[0].lat, dataElement[0].long]
-				addPopups(map, markerLayer)
-			  map.panTo(selectedCoords, 11)
-	 		})
+        $('.spotRow').removeClass("selectedRow")
+         var rowNumber = $(this).closest("tr").attr("id")
+         $('#' + rowNumber).addClass("selectedRow")
+         var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
+         var selectedSpot = ich.selectedSpot({
+          rows: dataElement
+        })
+        $('#latestSpot').css("display", "none")
+        $('#selectedSpot').html(selectedSpot).css("display", "inline")
+        var selectedCoords = [dataElement[0].lat, dataElement[0].long]
+        addPopups(map, markerLayer)
+        map.panTo(selectedCoords, 11)
+       })
 
-	  	// so that the first map and info that loads
-	  	// is complete and doesn't show rows that are
-	  	// actively being edited by folk
-	  	function findLatestCompleteSpot(data) {
-	  		var latestCompleteSpot = []
-	  		var startWithLatestRow = data.reverse()
-	  		startWithLatestRow.forEach(function(row){
-	  			if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
-	  			else latestCompleteSpot.push(row) 
-	  		})
-	  		return latestCompleteSpot[0]
-	  	}
+      // so that the first map and info that loads
+      // is complete and doesn't show rows that are
+      // actively being edited by folk
+      function findLatestCompleteSpot(data) {
+        var latestCompleteSpot = []
+        var startWithLatestRow = data.reverse()
+        startWithLatestRow.forEach(function(row){
+          if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
+          else latestCompleteSpot.push(row)
+        })
+        return latestCompleteSpot[0]
+      }
 
-	  	// find the latest spot with the most important
-	  	// info filled in (to prevent map breaking if
-	  	// someone is currently editing spreadsheet)
-	  	var theLatestSpot = findLatestCompleteSpot(gData)
-		  var latestSpot = ich.latestSpot({
-			   rows: theLatestSpot
-		  })
-			$('#latestSpot').html(latestSpot)
+      // find the latest spot with the most important
+      // info filled in (to prevent map breaking if
+      // someone is currently editing spreadsheet)
+      var theLatestSpot = findLatestCompleteSpot(gData)
+      var latestSpot = ich.latestSpot({
+         rows: theLatestSpot
+      })
+      $('#latestSpot').html(latestSpot)
 
-			// create geoJSON with coordinates and other
-			// useful bits from the original data
-			var optionsJSON = ["name", "address", "city", "rowNumber"]
-		  var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
-		  // create map, tilelayer (map background), markers and popups
-			var map = Sheetsee.loadMap("map")
-			Sheetsee.addTileLayer(map, 'schimmy.gg480cl6')
-			var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
-			setupMap(map, markerLayer)
+      // create geoJSON with coordinates and other
+      // useful bits from the original data
+      var optionsJSON = ["name", "address", "city", "rowNumber"]
+      var geoJSON = Sheetsee.createGeoJSON(gData, optionsJSON)
+      // create map, tilelayer (map background), markers and popups
+      var map = Sheetsee.loadMap("map")
+      Sheetsee.addTileLayer(map, 'schimmy.gg480cl6')
+      var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
+      setupMap(map, markerLayer)
 
-			// design the popups to have the content and
-			// interactions that we want
-			function setupMap(map, markerLayer) {
-			  markerLayer.on('click', function(e) {
-  				// get row number of selected marker
-  			  var rowNumber = e.layer.feature.opts.rowNumber.toString()
-  			  // find that row in the table and make consider it selected
-  			  $('#' + rowNumber).addClass("selectedRow")
-  				// using row number, get the data for the selected spot
-  			  var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
-  			  // take those details and re-write the selected spot section
-  				var selectedSpot = ich.selectedSpot({
-  				  rows: dataElement
-  			 	}) 
-  			  $('#latestSpot').css("display", "none")
-  			  $('#selectedSpot').html(selectedSpot).css("display", "inline")
-  			  var feature = e.layer.feature
-  			  var popupContent = '<h2>' + feature.opts.name + '</h2>'
-  			  e.layer.bindPopup(popupContent, {closeButton: false,})
-			  })
-			}
+      // design the popups to have the content and
+      // interactions that we want
+      function setupMap(map, markerLayer) {
+        markerLayer.on('click', function(e) {
+          // get row number of selected marker
+          var rowNumber = e.layer.feature.opts.rowNumber.toString()
+          // find that row in the table and make consider it selected
+          $('#' + rowNumber).addClass("selectedRow")
+          // using row number, get the data for the selected spot
+          var dataElement = Sheetsee.getMatches(gData, rowNumber, "rowNumber")
+          // take those details and re-write the selected spot section
+          var selectedSpot = ich.selectedSpot({
+            rows: dataElement
+           })
+          $('#latestSpot').css("display", "none")
+          $('#selectedSpot').html(selectedSpot).css("display", "inline")
+          var feature = e.layer.feature
+          var popupContent = '<h2>' + feature.opts.name + '</h2>'
+          e.layer.bindPopup(popupContent, {closeButton: false,})
+        })
+      }
 
-			$('.resetMap').click(function() {
-				setupMap(map, markerLayer)
-				$('#latestSpot').css("display", "inline")
-			  $('#selectedSpot').css("display", "none")
-			})
- 	}
+      $('.resetMap').click(function() {
+        setupMap(map, markerLayer)
+        $('#latestSpot').css("display", "inline")
+        $('#selectedSpot').css("display", "none")
+      })
+   }
 
-	</script>
+  </script>
 </body>
 </html>
