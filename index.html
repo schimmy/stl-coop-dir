@@ -175,7 +175,7 @@
         $('#selectedSpot').html(selectedSpot).css("display", "inline")
         var feature = e.layer.feature
         var popupContent = '<h2>' + feature.opts.name + '</h2>'
-        e.layer.bindPopup(popupContent, {closeButton: false,})
+        e.layer.bindPopup(popupContent, {closeButton: false,}).openPopup();
       })
     }
 
