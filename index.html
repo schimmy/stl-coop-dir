@@ -120,7 +120,6 @@
         $('#latestSpot').css("display", "none")
         $('#selectedSpot').html(selectedSpot).css("display", "inline")
         var selectedCoords = [dataElement[0].lat, dataElement[0].long]
-        addPopups(map, markerLayer)
         map.panTo(selectedCoords, 11)
       })
 
